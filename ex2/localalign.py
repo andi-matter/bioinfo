@@ -9,7 +9,7 @@ import numpy as np
 import sys
 import time
 
-fasta_sequence_file = "pair_short.fasta" # REPLACE FOR ARGV
+fasta_sequence_file = "KRAS_human_vs_mouse.fasta" # REPLACE FOR ARGV
 # fasta_sequence_file = sys.argv[1]
 
 #------------------------------------------------------------------------------ FILE READING
@@ -57,12 +57,12 @@ print("File read-in complete.") # maybe delete this b4 handin
     ## ones everywhere where same letter, -1 everywhere else
     
     
-# defines some test strings, comment to use file stuff (see above)
-str1 = "AATTTCG"
-str2 = "CGAA"      
-sequence_list = [str1, str2]
-sequence_length_list = [len(str1), len(str2)]
-# end test string stuff    
+## defines some test strings, comment to use file stuff (see above)
+# str1 = "AATCGGGATCGATAGCTACGATAGTGTACAGATACTCGCATAGCTA"
+# str2 =        "GTCTGATACTACG"      
+# sequence_list = [str1, str2]
+# sequence_length_list = [len(str1), len(str2)]
+## end test string stuff    
 
 long_ind = np.argmax(sequence_length_list)
 short_ind = 1 - long_ind
@@ -148,19 +148,19 @@ alignment_matrix[0, :] = 0 # reset first column and row to zeros (not sure why t
 alignment_matrix[:, 0] = 0
 
  ##printf bugfixing
-print(alignment_matrix)
+# print(alignment_matrix)
 # print()
-print(vector_matrix)
+# print(vector_matrix)
 # print()
 # print(graphic_matrix)
 # print()
 # print(maxima)
 # print()
 
-for k in range(len_short):
-    for j in range(len_long):
-        print(graphic_matrix[k,j], "\t", end="")
-    print()
+# for k in range(len_short):
+#     for j in range(len_long):
+#         print(graphic_matrix[k,j], "\t", end="")
+#     print()
 
 
 TWEEN = time.time()
@@ -185,14 +185,14 @@ count_max = 0
 
 for k, j in maxima: # each maximum gets one alignment path
     print("path ", count_max, ":", end=" ")
-    core_seq_short = ["*"] * max_len # initialise/reset core sequences from last path
-    core_seq_long = ["*"] * max_len
+    core_seq_short = [] # initialise/reset core sequences from last path
+    core_seq_long = []
+      
+    core_seq_short.append(seq_short[k]) # the same index is NOT ACCIDENTAL!
+    core_seq_long.append(seq_long[j]) # note down character at maximum
     
-    l = max(k,j)
-    
-    core_seq_short[l] = seq_short[k] # the same index is NOT ACCIDENTAL!
-    core_seq_long[l] = seq_long[j] # note down character at maximum
     score = alignment_matrix[k+1, j+1] # this is the maximum, i could also just write score = curr_max now that i think about it
+    
     store_k = k # we need these for later
     store_j = j
     
@@ -217,56 +217,34 @@ for k, j in maxima: # each maximum gets one alignment path
         if direct[0] == 0: seq_short_next = "_" # unless direction was to not move, then insert blank
         if direct[1] == 0: seq_long_next = "_"  
         
-        core_seq_short[l] = seq_short_next # write down character again INDEX INTENTIONAL
-        core_seq_long[l] = seq_long_next 
+        core_seq_short.append(seq_short_next) # write down character again INDEX INTENTIONAL
+        core_seq_long.append(seq_long_next) 
               
         score = alignment_matrix[k, j] # see next score
     
+    # print()
+    # print("str1 ", str1)
+    # print("str2 ", str2)
+    # print()
+    
+    l = max(j, k)
+    
+    stars_after = max(len_short - store_k, len_long - store_j) - 1
+  #  stars_before = max( )
+      
+    core_seq_long.append("*" * l)
+    core_seq_short.append("*" * l)
+
+    core_seq_long.reverse()
+    core_seq_short.reverse()
+    
+    core_seq_long.append("*" * stars_after)
+    core_seq_short.append("*" * stars_after)
+
     print()
-    print("str1: ", str1)
-    print("str2: ", str2)
-    print("unprocessed")
-    print(''.join(core_seq_long)) # KEEP join array to one string and print it
-    print(''.join(core_seq_short))
-    print("meh")
-    
-    ''' printf bugfixing
-    print("seq_short stuff")
-    print(sequence_list[0][:k])
-    print(core_seq_short)
-    print(sequence_list[0][store_k:])
-    
-    print("seq_long stuff")
-    print(sequence_list[1][:j])
-    print(core_seq_long)
-    print(sequence_list[1][store_j:])
-    print()'''
-    print("path done!")
-    count_max += 1
-    
-    print(store_k, store_j)
-    print(len_short - store_k, len_long - store_j)
-    clip_ind = max(len_short - store_k, len_long - store_j)
-    print(clip_ind)
-    
-    # fill up one of the sequence lists with remaining characters outside of alignment zone, also clip it with the second line
-    print(len(core_seq_long))
-    core_seq_long[:j] =  sequence_list[long_ind][:j] 
-    print(len(core_seq_long))
-    core_seq_long[store_j+1:(len_long-store_j+1)] = sequence_list[long_ind][store_j+1:]
-    print(len(core_seq_long))
-    
-    print("fill long")
-    print(''.join(core_seq_long)) # KEEP join array to one string and print it
-    print(''.join(core_seq_short))
-    print("meh")
-    
-    core_seq_short = core_seq_short[:-clip_ind+1] # clip other array to length of first array
-    core_seq_long = core_seq_long[:-clip_ind+1]
-    
     print(''.join(core_seq_long)) # KEEP join array to one string and print it
     print(''.join(core_seq_short)) # currently in the order they have in the pdf
-    # print()
+    print()
 
 
 STOP = time.time()
