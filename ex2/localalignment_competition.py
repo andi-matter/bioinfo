@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Tue May 31 18:41:12 2022
+
+@author: uni
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Spyder Editor
 
 This is a temporary script file.
@@ -8,10 +15,9 @@ This is a temporary script file.
 import numpy as np
 import sys
 import time
-
+# 
 # fasta_sequence_file = "pair_short.fasta" # REPLACE FOR ARGV
 fasta_sequence_file = sys.argv[1]
-
 
 #------------------------------------------------------------------------------ FILE READING
 
@@ -23,7 +29,6 @@ if fasta_sequence_file[-6:] != ".fasta" or len(fasta_sequence_file) < 6:
 
 ## Read sequences/patterns from fasta file (this is basically the same as last time cause
 ## i could not for the life of me find the method that one dude mentioned)
-
 with open(fasta_sequence_file, 'r') as i:
     lines = i.read().splitlines()
 
@@ -53,13 +58,15 @@ for line in open(fasta_sequence_file, 'r'):
         sequence_length_list[string_index] += len(line)
 sequence_list.append(''.join(current_sequence))
 
-# # print("File read-in complete.") # maybe delete this b4 handin
-
 # TWEEN = time.time()
 # delta = TWEEN - START
-# print(f"file read done after {delta/60:.6f} minutes. \n")
+# print(f"Sequence read done after {delta/60:.6f} minutes. \n")
 
-#%%
+# print(sequence_list)
+
+# print("File read-in complete.") # maybe delete this b4 handin
+
+
 
 #------------------------------------------------------------------------------ COST MATRIX
 
@@ -115,13 +122,14 @@ cost_matrix[seq_short[:,None] == seq_long] = 1
 
 ## initialising of a bunch of matrices i need
 alignment_matrix = np.zeros((len_short+1, len_long+1), dtype="int")# alignment scores
-vector_matrix = np.zeros((len_short+1, len_long+1), dtype="int")    # directional info for max()
+# vector_matrix = np.zeros((len_short+1, len_long+1), dtype="int")    # directional info for max()
 # graphic_matrix = np.empty((len_short+1, len_long+1), dtype="str")  # or dont need but were useful
 
 # symbols = ["--", "||", "\\", ".."]
 
-maxima = [] # gathering all global maxima in alignment matrix
+# maxima = [] # gathering all global maxima in alignment matrix
 curr_max = 0  # keeping track of global maximum
+
 
 # print("Calculating alignment matrix...", end="")
 for k in range(len_short):
@@ -137,27 +145,33 @@ for k in range(len_short):
         # print(options)
         ind = np.argmax(options) # which option was picked - if theres two equal maxima i just let numpy decide :) (think it takes the first one)
         loc_max = options[ind]   # what maximum actually was
+        
+        if curr_max > loc_max + len_long - j:           
+            break
+              
         alignment_matrix[k+1, j+1] = loc_max
         
         # update maximum tracking stuff
         if loc_max > curr_max:
             # print("greater than")
-            maxima = [[k, j]]
+            # maxima = [[k, j]]
             curr_max = loc_max
             
         elif loc_max == curr_max:
             # print("equal")
-            maxima.append([k, j])
+            # maxima.append([k, j])
             curr_max = loc_max
         
         # print(alignment_matrix)
         
         
-        vector_matrix[k+1, j+1] = ind # write down which direction we went to next cell
+        # vector_matrix[k+1, j+1] = ind # write down which direction we went to next cell
         # graphic_matrix[k+1, j+1] = symbols[ind]
+      
+
         
-alignment_matrix[0, :] = 0 # reset first column and row to zeros (not sure why this is necessary rn but there was a reason earlier)
-alignment_matrix[:, 0] = 0
+# alignment_matrix[0, :] = 0 # reset first column and row to zeros (not sure why this is necessary rn but there was a reason earlier)
+# alignment_matrix[:, 0] = 0
 
  ##printf bugfixing
 # print(alignment_matrix)
@@ -183,7 +197,7 @@ print(int(curr_max)) # KEEP
 
 # ----------------------------------------------------------------------------- BACKWARD PATHFINDING
 
-
+'''
 directions = [[0, -1], [-1, 0], [-1, -1], [0,0]] # cell walking directions depending on which option was chosen in alignment matrix
 
 # maximum length of total alignment 
@@ -264,5 +278,5 @@ for k, j in maxima: # each maximum gets one alignment path
 
 # print(f"\n Total calculation time {delta:.4f} seconds. That's {delta/60:.4f} minutes. Oof.")
 
-
+'''
 
