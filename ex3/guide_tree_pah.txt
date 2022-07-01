@@ -1,0 +1,26 @@
+                                                    sp|P00439|PH4H_HUMAN Phenylalanine-4-hydroxylase OS=Homo sapiens OX=9606 GN=PAH PE=1 SV=1  ...  XP_019690977.1 phenylalanine-4-hydroxylase [Felis catus]
+sp|P00439|PH4H_HUMAN Phenylalanine-4-hydroxylas...                                                0.0                                          ...                                             2254.0       
+XP_001156919.1 phenylalanine-4-hydroxylase [Pan...                                                0.0                                          ...                                             2255.0       
+XP_004053827.1 phenylalanine-4-hydroxylase [Gor...                                                0.0                                          ...                                             2247.0       
+XP_032155339.1 phenylalanine-4-hydroxylase isof...                                                0.0                                          ...                                             2258.0       
+XP_010988325.2 phenylalanine-4-hydroxylase [Cam...                                                0.0                                          ...                                             2254.0       
+XP_006205956.1 phenylalanine-4-hydroxylase [Vic...                                                0.0                                          ...                                             2271.0       
+XP_001497778.1 phenylalanine-4-hydroxylase [Equ...                                                0.0                                          ...                                             2304.0       
+XP_030179385.1 phenylalanine-4-hydroxylase [Lyn...                                                0.0                                          ...                                             2348.0       
+XP_019690977.1 phenylalanine-4-hydroxylase [Fel...                                                0.0                                          ...                                                0.0       
+
+[9 rows x 9 columns]
+(1, 2)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+(3, 1+2)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+(5, 6)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+(8, 9)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+(4, 1+2+3)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+(7, 8+9)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+(5+6, 1+2+3+4)
+(1, 2, 3, 4, 5, 6, 7, 8, 9)

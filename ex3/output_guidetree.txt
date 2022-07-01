@@ -1,0 +1,10 @@
+ "sp|P00439|PH4H_HUMAN Phenylalanine-4-hydroxylase OS=Homo sapiens OX=9606 GN=PAH PE=1 SV=1" "XP_001156919.1 phenylalanine-4-hydroxylase [Pan troglodytes]" "XP_004053827.1 phenylalanine-4-hydroxylase [Gorilla gorilla gorilla]" "XP_032155339.1 phenylalanine-4-hydroxylase isoform X1 [Sapajus apella]" "XP_010988325.2 phenylalanine-4-hydroxylase [Camelus dromedarius]" "XP_006205956.1 phenylalanine-4-hydroxylase [Vicugna pacos]" "XP_001497778.1 phenylalanine-4-hydroxylase [Equus caballus]" "XP_030179385.1 phenylalanine-4-hydroxylase [Lynx canadensis]" "XP_019690977.1 phenylalanine-4-hydroxylase [Felis catus]"
+"sp|P00439|PH4H_HUMAN Phenylalanine-4-hydroxylase OS=Homo sapiens OX=9606 GN=PAH PE=1 SV=1" 0.0 2381.0 2373.0 2319.0 2276.0 2280.0 2271.0 2264.0 2254.0
+"XP_001156919.1 phenylalanine-4-hydroxylase [Pan troglodytes]" 0.0 0.0 2374.0 2320.0 2277.0 2281.0 2272.0 2265.0 2255.0
+"XP_004053827.1 phenylalanine-4-hydroxylase [Gorilla gorilla gorilla]" 0.0 0.0 0.0 2312.0 2269.0 2273.0 2264.0 2257.0 2247.0
+"XP_032155339.1 phenylalanine-4-hydroxylase isoform X1 [Sapajus apella]" 0.0 0.0 0.0 0.0 2265.0 2278.0 2272.0 2262.0 2258.0
+"XP_010988325.2 phenylalanine-4-hydroxylase [Camelus dromedarius]" 0.0 0.0 0.0 0.0 0.0 2351.0 2270.0 2264.0 2254.0
+"XP_006205956.1 phenylalanine-4-hydroxylase [Vicugna pacos]" 0.0 0.0 0.0 0.0 0.0 0.0 2287.0 2281.0 2271.0
+"XP_001497778.1 phenylalanine-4-hydroxylase [Equus caballus]" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2314.0 2304.0
+"XP_030179385.1 phenylalanine-4-hydroxylase [Lynx canadensis]" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2348.0
+"XP_019690977.1 phenylalanine-4-hydroxylase [Felis catus]" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
